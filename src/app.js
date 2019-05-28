@@ -30,7 +30,7 @@ const cache = () => {
 app.get('/cities', cache(), (req, res) => {
     xmlDownloader(cityUrl, (error, result) => {
        if (error) {
-           res.send(502);
+           res.sendStatus(502);
            return;
        }
 
@@ -44,14 +44,14 @@ app.get('/forecast', cache(), (req, res) => {
     const language = req.query.language;
     if (typeof provinceCode === 'undefined' || typeof cityId === 'undefined'
         || typeof language === 'undefined') {
-        res.send(400);
+        res.sendStatus(400);
         return;
     }
 
     const forecastConstructedUrl = forecastUrl + provinceCode + "/" + cityId + "_" + language + ".xml";
     xmlDownloader(forecastConstructedUrl, (error, result) => {
         if (error) {
-            res.send(502);
+            res.sendStatus(502);
             return;
         }
 
