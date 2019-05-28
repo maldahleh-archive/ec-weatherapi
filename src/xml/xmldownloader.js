@@ -22,5 +22,7 @@ export default (url, callback) => {
                 callback(null, result);
             });
         });
+    }).on('error', (e) => {
+        callback(e, null);
     });
 };
