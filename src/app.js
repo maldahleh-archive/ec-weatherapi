@@ -6,6 +6,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const cityUrl = 'http://dd.weatheroffice.ec.gc.ca/citypage_weather/xml/siteList.xml';
+const forecastUrl = 'http://dd.weatheroffice.ec.gc.ca/citypage_weather/xml/';
 
 const cacheSeconds = 300;
 const cache = () => {
@@ -34,6 +35,27 @@ app.get('/cities', cache(), (req, res) => {
        }
 
        res.json(result);
+    });
+});
+
+app.get('/forecast', cache(), (req, res) => {
+    const provinceCode = req.query.province;
+    const cityId = req.query.cityId;
+    const language = req.query.language;
+    if (typeof provinceCode === 'undefined' || typeof cityId === 'undefined'
+        || typeof language === 'undefined') {
+        res.send(400);
+        return;
+    }
+
+    const forecastConstructedUrl = forecastUrl + provinceCode + "/" + cityId + "_" + language + ".xml";
+    xmlDownloader(forecastConstructedUrl, (error, result) => {
+        if (error) {
+            res.send(502);
+            return;
+        }
+
+        res.json(result);
     });
 });
 
