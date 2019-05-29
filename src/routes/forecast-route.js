@@ -1,5 +1,5 @@
 import cityLookup from '../helpers/city-lookup';
-import { parseDateTime, parseLocation, parseCurrent, parseHourly, parseNormals, parseWarnings, parseSunInfo,
+import { parseCreation, parseLocation, parseCurrent, parseHourly, parseNormals, parseWarnings, parseSunInfo,
     parseYesterday, parseAlmanac } from '../helpers/xml-helpers';
 import xmlDownloader from "../xml/xml-downloader";
 
@@ -27,10 +27,7 @@ export default (req, res) => {
             }
 
             const finalResult = {
-                'creation': {
-                    'utc': parseDateTime(result['siteData']['dateTime'][0]),
-                    'local': parseDateTime(result['siteData']['dateTime'][1])
-                },
+                'creation': parseCreation(result['siteData']['dateTime']),
                 'location': parseLocation(result['siteData']['location'][0]),
                 'warnings': parseWarnings(result['siteData']['warnings'][0]),
                 'currentConditions': parseCurrent(result['siteData']['currentConditions'][0]),

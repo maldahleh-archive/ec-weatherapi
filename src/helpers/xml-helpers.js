@@ -1,3 +1,18 @@
+const parseCreation = (object) => {
+    const creation = {};
+
+    object.forEach(time => {
+        const dateObject = parseDateTime(time);
+        if (dateObject['offset']['zone'] === 'UTC') {
+            creation['utc'] = dateObject;
+        } else {
+            creation['local'] = dateObject;
+        }
+    });
+
+    return creation;
+};
+
 const parseDateTime = (object) => {
     return {
         'offset': {
@@ -235,5 +250,5 @@ const parseMeasurement = (object) => {
     };
 };
 
-export { parseDateTime, parseWarnings, parseCurrent, parseHourly, parseNormals, parseLocation, parseMeasurement,
-    parseSunInfo, parseYesterday, parseAlmanac }
+export { parseCreation, parseWarnings, parseCurrent, parseHourly, parseNormals, parseLocation, parseSunInfo,
+    parseYesterday, parseAlmanac }
