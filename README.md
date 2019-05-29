@@ -29,8 +29,6 @@ Sample Response (Returns 855 cities as of May 28, 2019):
 **/forecast?cityId={city ID}&french** - Return's Environment Canada's Forecast in _French_ for the given city.
 
 Sample Response:
-<details><summary>CLICK ME</summary>
-<p>
 ```json
 {
   "creation": {
@@ -1726,7 +1724,3 @@ Sample Response:
   }
 }
 ```
-</p>
-</details>
-
-All requests are cached for 5 minutes.
