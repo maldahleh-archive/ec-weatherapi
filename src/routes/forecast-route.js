@@ -26,7 +26,7 @@ export default (req, res) => {
                 return;
             }
 
-            const finalResult = {
+            res.json({
                 'creation': parseCreation(result['siteData']['dateTime']),
                 'location': parseLocation(result['siteData']['location'][0]),
                 'warnings': parseWarnings(result['siteData']['warnings'][0]),
@@ -37,9 +37,7 @@ export default (req, res) => {
                 'sun': parseSunInfo(result['siteData']['riseSet'][0]),
                 'yesterday': parseYesterday(result['siteData']['yesterdayConditions'][0]),
                 'almanac': parseAlmanac(result['siteData']['almanac'][0])
-            };
-
-            res.json(finalResult);
+            });
         });
     });
 };
