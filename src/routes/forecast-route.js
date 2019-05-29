@@ -1,5 +1,5 @@
 import cityLookup from '../helpers/city-lookup';
-import { parseCreation, parseLocation, parseCurrent, parseHourly, parseNormals, parseWarnings, parseSunInfo,
+import { parseCreation, parseLocation, parseCurrent, parseForecast, parseHourly, parseNormals, parseWarnings, parseSunInfo,
     parseYesterday, parseAlmanac } from '../helpers/xml-helpers';
 import xmlDownloader from "../xml/xml-downloader";
 
@@ -32,6 +32,7 @@ export default (req, res) => {
                 'warnings': parseWarnings(result['siteData']['warnings'][0]),
                 'currentConditions': parseCurrent(result['siteData']['currentConditions'][0]),
                 'hourly': parseHourly(result['siteData']['hourlyForecastGroup'][0]),
+                'forecast': parseForecast(result['siteData']['forecastGroup'][0]['forecast']),
                 'normals': parseNormals(result['siteData']['forecastGroup'][0]['regionalNormals'][0]),
                 'sun': parseSunInfo(result['siteData']['riseSet'][0]),
                 'yesterday': parseYesterday(result['siteData']['yesterdayConditions'][0]),
