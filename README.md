@@ -24,7 +24,8 @@ Sample Response (Returns 855 cities as of May 28, 2019):
 ]
 ```
 
-**/forecast?cityId={city ID}&province={province code}&language={language, e for english, f for french}** - Return's 
-Environment Canada's Forecast as JSON for the given city.
+**/forecast?cityId={city ID}** - Return's Environment Canada's Forecast in _English_ for the given city.
 
-All responses are cached for 5 minutes.
+**/forecast?cityId={city ID}&french** - Return's Environment Canada's Forecast in _French_ for the given city.
+
+All requests are cached for 5 minutes.

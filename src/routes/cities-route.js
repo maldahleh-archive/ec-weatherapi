@@ -9,7 +9,7 @@ export default (req, res) => {
             return;
         }
 
-        let cities = [];
+        const cities = [];
         result['siteList']['site'].forEach((e) => {
             cities.push({
                 'cityId': e['$']['code'],
